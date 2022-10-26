@@ -1,22 +1,35 @@
 import React, { Component } from 'react';
 import { Card } from 'react-bootstrap';
-import {GiWashingMachine} from 'react-icons/gi'
+import { GiWashingMachine } from 'react-icons/gi'
+import CountdownTimer from './Timer/CountdownTimer';
+
+
+const THREE_DAYS_IN_MS = 3 * 24 * 60 * 60 * 1000;
+const NOW_IN_MS = new Date().getTime();
+const dateTimeAfterThreeDays = NOW_IN_MS + THREE_DAYS_IN_MS;
+
 const Machine = () => {
-    return(
+    return (
         <div>
-            <Card style = {{width: "75px"}}>
+            <Card>
                 Machine 1
-                <br/>
-                <GiWashingMachine/>
-            </Card>
+                <br />
+                <GiWashingMachine />
+                <div>
+                    <CountdownTimer targetDate={dateTimeAfterThreeDays} />
+                </div>
+            </Card >
             <Card>
                 Machine 2
-                <br/>
-                <GiWashingMachine/>
+                <br />
+                <GiWashingMachine />
+                <div>
+                    <CountdownTimer targetDate={dateTimeAfterThreeDays} />
+                </div>
             </Card>
-        </div>
+        </div >
     );
 }
-   
+
 
 export default Machine;
