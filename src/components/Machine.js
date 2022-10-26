@@ -4,7 +4,7 @@ import {GiWashingMachine} from 'react-icons/gi'
 const Machine = () => {
     return(
         <div>
-            <Card>
+            <Card style = {{width: "75px"}}>
                 Machine 1
                 <br/>
                 <GiWashingMachine/>
