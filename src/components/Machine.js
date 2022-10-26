@@ -9,6 +9,11 @@ const Machine = () => {
                 <br/>
                 <GiWashingMachine/>
             </Card>
+            <Card>
+                Machine 2
+                <br/>
+                <GiWashingMachine/>
+            </Card>
         </div>
     );
 }
