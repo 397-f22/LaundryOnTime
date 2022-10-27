@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card } from 'react-bootstrap';
-import { GiWashingMachine } from 'react-icons/gi'
+import { GiWashingMachine} from 'react-icons/gi'
+import { MdLocalLaundryService } from 'react-icons/md'
 import CountdownTimer from './Timer/CountdownTimer';
 
 
@@ -12,21 +13,37 @@ const Machine = () => {
     return (
         <div>
             <Card>
-                Machine 1
+                Washer 1
                 <br />
-                <GiWashingMachine />
+                <GiWashingMachine size={64}/>
                 <div>
                     <CountdownTimer targetDate={dateTimeAfterThreeDays} />
                 </div>
             </Card >
             <Card>
-                Machine 2
+                Washer 2
                 <br />
-                <GiWashingMachine />
+                <GiWashingMachine size={64}/>
                 <div>
                     <CountdownTimer targetDate={dateTimeAfterThreeDays} />
                 </div>
             </Card>
+            <Card>
+                Dryer 1
+                <br />
+                <MdLocalLaundryService size={64}/>
+                <div>
+                    <CountdownTimer targetDate={dateTimeAfterThreeDays} />
+                </div>
+            </Card >
+            <Card>
+                Dryer 2
+                <br />
+                <MdLocalLaundryService size={64}/>
+                <div>
+                    <CountdownTimer targetDate={dateTimeAfterThreeDays} />
+                </div>
+            </Card >
         </div >
     );
 }
