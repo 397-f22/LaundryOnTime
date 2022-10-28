@@ -10,7 +10,6 @@ function App() {
 
   if (machines == undefined) return <h1>Loading...</h1>
   if (error) return <h1>Error loading data</h1>
-  
 
   return (
     <div className="App">
