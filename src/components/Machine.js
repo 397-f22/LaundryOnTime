@@ -1,31 +1,24 @@
-import React, { Component, useState } from 'react';
-import { Card } from 'react-bootstrap';
-import { GiWashingMachine } from 'react-icons/gi'
+import React, { Component } from 'react';
+import { Button, Card } from 'react-bootstrap';
+import { GiWashingMachine} from 'react-icons/gi'
 import { MdLocalLaundryService } from 'react-icons/md'
 import CountdownTimer from './Timer/CountdownTimer';
-import Button from 'react-bootstrap/Button';
-
-const Washer_IN_MS = 80 * 60 * 1000;
-const Dryer_IN_MS = 45 * 60 * 1000;
-let NOW_IN_MS = new Date().getTime();
-let dateTimeAfterThreeDays_Washer = NOW_IN_MS + Washer_IN_MS;
-//const dateTimeAfterThreeDays_Dryer = NOW_IN_MS + Dryer_IN_MS;
+import { useDbUpdate } from '../utilities/firebase';
 
 
+const updateMachineTime = (minutes, update) => {
+    const NOW_IN_MS = new Date().getTime();
+    const DURATION_IN_MS = minutes * 60 * 1000;
+    update({endTime: new Date(NOW_IN_MS + DURATION_IN_MS).toISOString()});
+}
 
-const Machine = () => {
-    const [usage,setUsage]=useState(false);
-    const [start_time,setStart_time]=useState(dateTimeAfterThreeDays_Washer);
-    const start_machine = () =>{
-        NOW_IN_MS = new Date().getTime();
-        setUsage(true);
-        setStart_time(NOW_IN_MS + Washer_IN_MS);
-    };
-    const end_machine = () => {
-        NOW_IN_MS = new Date().getTime();
-        setUsage(false);
-        setStart_time(NOW_IN_MS + Washer_IN_MS);
-    }
+const Machine = ( {machines} ) => {
+    const [updatewasher1, ] = useDbUpdate("/washer1");
+    const [updatewasher2, ] = useDbUpdate("/washer2");
+    const [updatedryer1, ] = useDbUpdate("/dryer1");
+    const [updatedryer2, ] = useDbUpdate("/dryer2");
+
+
     return (
         <div>
             <Card>
@@ -33,13 +26,9 @@ const Machine = () => {
                 <br />
                 <GiWashingMachine size={64} />
                 <div>
-                    <CountdownTimer targetDate={start_time} inUsage={usage} />
+                    <CountdownTimer targetDate={Date.parse(machines["washer1"].endTime)} />
                 </div>
-                { usage===false ? <Button variant="success" onClick={start_machine}>
-                    Start
-                </Button> : <Button variant="danger" onClick={end_machine}>
-                    Cancel
-                </Button> }
+                <Button variant="success" style={{width: "20%"}} onClick={() => {updateMachineTime(45, updatewasher1)}}></Button>
             </Card >
             <br/>
             <Card>
@@ -47,13 +36,9 @@ const Machine = () => {
                 <br />
                 <GiWashingMachine size={64} />
                 <div>
-                    <CountdownTimer targetDate={start_time} />
+                    <CountdownTimer targetDate={Date.parse(machines["washer2"].endTime)} />
                 </div>
-                { usage===false ? <Button variant="success" onClick={start_machine}>
-                    Start
-                </Button> : <Button variant="danger" onClick={end_machine}>
-                    Cancel
-                </Button> }
+                <Button variant="success" style={{width: "20%"}} onClick={() => {updateMachineTime(45, updatewasher2)}}></Button>
             </Card>
             <br/>
             <Card>
@@ -61,13 +46,9 @@ const Machine = () => {
                 <br />
                 <MdLocalLaundryService size={64} />
                 <div>
-                    <CountdownTimer targetDate={start_time} />
+                    <CountdownTimer targetDate={Date.parse(machines["dryer1"].endTime)} />
                 </div>
-                { usage===false ? <Button variant="success" onClick={start_machine}>
-                    Start
-                </Button> : <Button variant="danger" onClick={end_machine}>
-                    Cancel
-                </Button> }
+                <Button variant="success" style={{width: "20%"}} onClick={() => {updateMachineTime(60, updatedryer1)}}></Button>
             </Card >
             <br/>
             <Card>
@@ -75,13 +56,9 @@ const Machine = () => {
                 <br />
                 <MdLocalLaundryService size={64} />
                 <div>
-                    <CountdownTimer targetDate={start_time} />
+                    <CountdownTimer targetDate={Date.parse(machines["dryer2"].endTime)} />
                 </div>
-                { usage===false ? <Button variant="success" onClick={start_machine}>
-                    Start
-                </Button> : <Button variant="danger" onClick={end_machine}>
-                    Cancel
-                </Button> }
+                <Button variant="success" style={{width: "20%"}} onClick={() => {updateMachineTime(60, updatedryer2)}}></Button>
             </Card >
         </div >
     );
