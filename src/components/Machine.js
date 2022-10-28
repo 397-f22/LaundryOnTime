@@ -26,9 +26,11 @@ const Machine = ( {machines} ) => {
                 <br />
                 <GiWashingMachine size={64} />
                 <div>
-                    <CountdownTimer targetDate={Date.parse(machines["washer1"].endTime)} />
+                    <CountdownTimer targetDate={Date.parse(machines["washer1"].endTime)} inUsage={Date.now() <= Date.parse(machines["washer1"].endTime)} />
                 </div>
-                <Button variant="success" style={{width: "20%"}} onClick={() => {updateMachineTime(45, updatewasher1)}}></Button>
+                {Date.now() > Date.parse(machines["washer1"].endTime) ? 
+                    <Button variant="success" onClick={() => {updateMachineTime(60, updatewasher1)}}>Start</Button>
+                    : <Button variant="danger" onClick={() => updateMachineTime(0, updatewasher1)}>Stop</Button> } 
             </Card >
             <br/>
             <Card>
@@ -36,9 +38,11 @@ const Machine = ( {machines} ) => {
                 <br />
                 <GiWashingMachine size={64} />
                 <div>
-                    <CountdownTimer targetDate={Date.parse(machines["washer2"].endTime)} />
+                    <CountdownTimer targetDate={Date.parse(machines["washer2"].endTime)} inUsage={Date.now() <= Date.parse(machines["washer2"].endTime)} />
                 </div>
-                <Button variant="success" style={{width: "20%"}} onClick={() => {updateMachineTime(45, updatewasher2)}}></Button>
+                {Date.now() > Date.parse(machines["washer2"].endTime) ? 
+                    <Button variant="success" onClick={() => {updateMachineTime(60, updatewasher2)}}>Start</Button>
+                    : <Button variant="danger" onClick={() => updateMachineTime(0, updatewasher2)}>Stop</Button> } 
             </Card>
             <br/>
             <Card>
@@ -46,9 +50,11 @@ const Machine = ( {machines} ) => {
                 <br />
                 <MdLocalLaundryService size={64} />
                 <div>
-                    <CountdownTimer targetDate={Date.parse(machines["dryer1"].endTime)} />
+                    <CountdownTimer targetDate={Date.parse(machines["dryer1"].endTime)} inUsage={Date.now() <= Date.parse(machines["dryer1"].endTime)} />
                 </div>
-                <Button variant="success" style={{width: "20%"}} onClick={() => {updateMachineTime(60, updatedryer1)}}></Button>
+                {Date.now() > Date.parse(machines["dryer1"].endTime) ? 
+                    <Button variant="success" onClick={() => {updateMachineTime(60, updatedryer1)}}>Start</Button>
+                    : <Button variant="danger" onClick={() => updateMachineTime(0, updatedryer1)}>Stop</Button> } 
             </Card >
             <br/>
             <Card>
@@ -56,9 +62,11 @@ const Machine = ( {machines} ) => {
                 <br />
                 <MdLocalLaundryService size={64} />
                 <div>
-                    <CountdownTimer targetDate={Date.parse(machines["dryer2"].endTime)} />
+                    <CountdownTimer targetDate={Date.parse(machines["dryer2"].endTime)} inUsage={Date.now() <= Date.parse(machines["dryer2"].endTime)} />
                 </div>
-                <Button variant="success" style={{width: "20%"}} onClick={() => {updateMachineTime(60, updatedryer2)}}></Button>
+                {Date.now() > Date.parse(machines["dryer2"].endTime) ? 
+                    <Button variant="success" onClick={() => {updateMachineTime(60, updatedryer2)}}>Start</Button>
+                    : <Button variant="danger" onClick={() => updateMachineTime(0, updatedryer2)}>Stop</Button> } 
             </Card >
         </div >
     );
