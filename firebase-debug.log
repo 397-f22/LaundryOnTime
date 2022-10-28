@@ -1,0 +1,38 @@
+[debug] [2022-10-27T01:52:52.964Z] ----------------------------------------------------------------------
+[debug] [2022-10-27T01:52:52.964Z] Command:       /Users/liutianze/.nvm/versions/node/v18.9.1/bin/node /Users/liutianze/.nvm/versions/node/v18.9.1/bin/firebase deploy
+[debug] [2022-10-27T01:52:52.965Z] CLI Version:   11.13.0
+[debug] [2022-10-27T01:52:52.965Z] Platform:      darwin
+[debug] [2022-10-27T01:52:52.965Z] Node Version:  v18.9.1
+[debug] [2022-10-27T01:52:52.966Z] Time:          Wed Oct 26 2022 20:52:52 GMT-0500 (Central Daylight Time)
+[debug] [2022-10-27T01:52:52.966Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-10-27T01:52:52.967Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2022-10-27T01:52:53.013Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-10-27T01:52:53.013Z] > authorizing via signed-in user (tianzeliu518@gmail.com)
+[debug] [2022-10-27T01:52:53.013Z] [iam] checking project laundryontime-30445 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2022-10-27T01:52:53.014Z] > refreshing access token with scopes: []
+[debug] [2022-10-27T01:52:53.014Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2022-10-27T01:52:53.014Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2022-10-27T01:52:53.295Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2022-10-27T01:52:53.296Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2022-10-27T01:52:53.316Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2022-10-27T01:52:53.316Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2022-10-27T01:52:53.328Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/laundryontime-30445:testIamPermissions [none]
+[debug] [2022-10-27T01:52:53.328Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/laundryontime-30445:testIamPermissions x-goog-quota-user=projects/laundryontime-30445
+[debug] [2022-10-27T01:52:53.329Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/laundryontime-30445:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2022-10-27T01:52:53.698Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/laundryontime-30445:testIamPermissions 200
+[debug] [2022-10-27T01:52:53.698Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/laundryontime-30445:testIamPermissions {}
+[debug] [2022-10-27T01:52:53.698Z] [iam] error while checking permissions, command may fail: FirebaseError: Authorization failed. This account is missing the following required permissions on project laundryontime-30445:
+
+  firebase.projects.get
+  firebasehosting.sites.update
+[debug] [2022-10-27T01:52:53.700Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/laundryontime-30445 [none]
+[debug] [2022-10-27T01:52:53.906Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/laundryontime-30445 403
+[debug] [2022-10-27T01:52:53.907Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/laundryontime-30445 {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2022-10-27T01:52:53.908Z] HTTP Error: 403, The caller does not have permission
+[debug] [2022-10-27T01:52:54.195Z] FirebaseError: HTTP Error: 403, The caller does not have permission
+    at responseToError (/Users/liutianze/.nvm/versions/node/v18.9.1/lib/node_modules/firebase-tools/lib/responseToError.js:49:12)
+    at RetryOperation._fn (/Users/liutianze/.nvm/versions/node/v18.9.1/lib/node_modules/firebase-tools/lib/apiv2.js:288:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to get Firebase project laundryontime-30445. Please make sure the project exists and your account has permission to access it.
