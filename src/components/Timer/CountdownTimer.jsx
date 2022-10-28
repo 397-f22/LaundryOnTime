@@ -35,8 +35,8 @@ const ShowCounter = ({ minutes, seconds }) => {
     );
 };
 
-const CountdownTimer = ({ targetDate }) => {
-    const [minutes, seconds] = useCountdown(targetDate);
+const CountdownTimer = ({ targetDate, inUsage }) => {
+    const [minutes, seconds] = useCountdown(targetDate, inUsage);
 
     if (minutes + seconds <= 0) {
         return <ExpiredNotice />;
