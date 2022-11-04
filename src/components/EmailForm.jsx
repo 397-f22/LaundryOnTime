@@ -27,9 +27,9 @@ const FormDialog = () => {
                 <DialogTitle>Send Email</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        Send a noticefication to remind him/her to get back their clothes now?
+                        Send a notification to remind him/her to get back their clothes now?
                     </DialogContentText>
-                    <ContactUs />
+                    <ContactUs closeForm={handleClose} />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>

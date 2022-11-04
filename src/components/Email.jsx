@@ -2,14 +2,17 @@ import React from 'react';
 import emailjs from 'emailjs-com';
 
 
-const ContactUs = () => {
+const ContactUs = ({
+    closeForm,
+}) => {
 
     function sendEmail(e) {
         e.preventDefault();    //This is important, i'm not sure why, but the email won't send without it
 
         emailjs.sendForm('service_2le5hw2', 'template_lr44ole', e.target, 'pvEv9i6LAkDg3kq9y')
             .then((result) => {
-                window.location.reload()  //This is if you still want the page to reload (since e.preventDefault() cancelled that behavior) 
+                closeForm();
+                e.preventDefault();
             }, (error) => {
                 console.log(error.text);
             });
