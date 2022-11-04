@@ -7,7 +7,9 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import ContactUs from './Email.jsx';
 
-const FormDialog = () => {
+const FormDialog = ({
+    setShowToast,
+}) => {
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -29,7 +31,7 @@ const FormDialog = () => {
                     <DialogContentText>
                         Send a notification to remind him/her to get back their clothes now?
                     </DialogContentText>
-                    <ContactUs closeForm={handleClose} />
+                    <ContactUs closeForm={handleClose} setShowToast={setShowToast} />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>

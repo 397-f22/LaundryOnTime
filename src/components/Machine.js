@@ -14,7 +14,10 @@ const updateMachineTime = (minutes, update) => {
     update({ endTime: new Date(NOW_IN_MS + DURATION_IN_MS).toISOString() });
 }
 
-const Machine = ({ machines }) => {
+const Machine = ({
+    machines,
+    setShowToast,
+}) => {
     const [updatewasher1,] = useDbUpdate("/washer1");
     const [updatewasher2,] = useDbUpdate("/washer2");
     const [updatedryer1,] = useDbUpdate("/dryer1");
@@ -34,7 +37,7 @@ const Machine = ({ machines }) => {
                     <Button variant="success" onClick={() => { updateMachineTime(1, updatewasher1) }}>Start</Button>
                     : <Button variant="danger" onClick={() => updateMachineTime(0, updatewasher1)}>Stop</Button>}
             </Card >
-            <FormDialog />
+            <FormDialog setShowToast={setShowToast} />
             <ContactUs_auto />
             <br />
             <Card>

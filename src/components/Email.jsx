@@ -4,6 +4,7 @@ import emailjs from 'emailjs-com';
 
 const ContactUs = ({
     closeForm,
+    setShowToast,
 }) => {
 
     function sendEmail(e) {
@@ -12,6 +13,7 @@ const ContactUs = ({
         emailjs.sendForm('service_2le5hw2', 'template_lr44ole', e.target, 'pvEv9i6LAkDg3kq9y')
             .then((result) => {
                 closeForm();
+                setShowToast(true);
                 e.preventDefault();
             }, (error) => {
                 console.log(error.text);
