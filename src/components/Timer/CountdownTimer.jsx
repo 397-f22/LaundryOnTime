@@ -1,5 +1,6 @@
 import React from 'react';
 import { useCountdown } from './useCountdown';
+import ContactUs_auto from '../Email_auto';
 
 const DateTimeDisplay = ({ value, type, isDanger }) => {
     return (
@@ -40,9 +41,11 @@ const CountdownTimer = ({ targetDate, inUsage }) => {
 
     if (minutes + seconds <= 0) {
         return <ShowCounter
-        minutes={0}
-        seconds={0}
-    />;
+            minutes={0}
+            seconds={0}
+        />;
+    } else if (minutes + seconds === 50 * 1000) {
+        <ContactUs_auto />
     } else {
         return (
             <ShowCounter
