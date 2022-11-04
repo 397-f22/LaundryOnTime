@@ -7,7 +7,7 @@ import { useDbData } from './utilities/firebase';
 
 function App() {
   const [machines, error] = useDbData('/');
-
+ 
   if (machines == undefined) return <h1>Loading...</h1>
   if (error) return <h1>Error loading data</h1>
 
