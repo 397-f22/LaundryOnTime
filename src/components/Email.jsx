@@ -5,12 +5,14 @@ import emailjs from 'emailjs-com';
 const ContactUs = ({
     closeForm,
     setShowToast,
+    userName,
+    userEmail,
 }) => {
 
     function sendEmail(e) {
         e.preventDefault();    //This is important, i'm not sure why, but the email won't send without it
 
-        emailjs.sendForm('service_2le5hw2', 'template_lr44ole', e.target, 'pvEv9i6LAkDg3kq9y')
+        emailjs.sendForm('service_tuwhvue', 'template_hpvy3qf', e.target, 'Fpvga5K0LlNXN3GQU')
             .then((result) => {
                 closeForm();
                 setShowToast(true);
@@ -25,13 +27,13 @@ const ContactUs = ({
             <label>User name:</label>
             <input type="text" name="to_name" />
             <label>Your name:</label>
-            <input type="text" name="from_name" />
+            <input type="text" name="from_name" value={userName} />
             <br />
             <br />
             <label>User Email:</label>
-            <input type="email" name="from_email" />
-            <label>Your Email:</label>
             <input type="email" name="to_email" />
+            <label>Your Email:</label>
+            <input type="email" name="from_email" value={userEmail} />
             <br />
             <br />
             <label>Message:</label>

@@ -6,7 +6,7 @@ import Machine from "./components/Machine";
 import { useDbData } from "./utilities/firebase";
 import Login from "./components/Login";
 import { useState } from 'react';
-import Toaster from './components/Toast';
+
 function App() {
   const [machines, error] = useDbData("/");
   const [showToast, setShowToast] = useState(false);
@@ -22,7 +22,7 @@ function App() {
           <Route path="/" element={<GuestRoute element={Login} />} />
           <Route
             path="/home"
-            element={user ? <Machine machines={machines} setShowToast={setShowToast} /> : <Login />}
+            element={user ? <Machine machines={machines} setShowToast={setShowToast} showToast={showToast} /> : <Login />}
           />
         </Routes>
       </BrowserRouter>

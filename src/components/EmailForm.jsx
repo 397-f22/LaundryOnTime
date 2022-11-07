@@ -9,6 +9,8 @@ import ContactUs from './Email.jsx';
 
 const FormDialog = ({
     setShowToast,
+    userName,
+    userEmail,
 }) => {
     const [open, setOpen] = React.useState(false);
 
@@ -31,7 +33,7 @@ const FormDialog = ({
                     <DialogContentText>
                         Send a notification to remind him/her to get back their clothes now?
                     </DialogContentText>
-                    <ContactUs closeForm={handleClose} setShowToast={setShowToast} />
+                    <ContactUs closeForm={handleClose} setShowToast={setShowToast} userName={userName} userEmail={userEmail} />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>

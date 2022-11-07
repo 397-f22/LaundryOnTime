@@ -1,27 +1,44 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import emailjs from 'emailjs-com';
 
 
 
-const ContactUs_auto = () => {
+const ContactUs_auto = ({
+    userName,
+    userEmail,
+    minutesWasher,
+    secondsWasher,
+    sent,
+    setSent,
+}) => {
 
 
     function sendEmail(e) {
         e.preventDefault();    //This is important, i'm not sure why, but the email won't send without it
-
-        emailjs.sendForm('service_2le5hw2', 'template_qlj3k0q', e.target, 'pvEv9i6LAkDg3kq9y')
+        console.log("sending email.");
+        emailjs.sendForm('service_e3ipp7a', 'template_6gc7vdg', e.target, '3Hbnue0vyrZuDnIAW')
             .then((result) => {
-                window.location.reload()  //This is if you still want the page to reload (since e.preventDefault() cancelled that behavior) 
+                console.log(result);
+                // window.location.reload()  //This is if you still want the page to reload (since e.preventDefault() cancelled that behavior)
+                setSent(true)
             }, (error) => {
                 console.log(error.text);
             });
     }
 
+    useEffect(() => {
+        if (minutesWasher > 0 && secondsWasher < 50 && sent === false) {
+            document.getElementById("auto-submit").click();
+        }
+    }, [minutesWasher, secondsWasher])
+
+    // console.log(sent);
+
     return (
         <form id="myform" className="contact-form" onSubmit={sendEmail}>
-            <input type="hidden" name="to_name" value={"123"} />
-            <input type="hidden" name="to_email" value={"tianzeliu518@gmail.com"} />
-            <input style={{ display: 'none' }} type="submit" />
+            <input name="to_name" value={userName} />
+            <input name="to_email" value={userEmail} />
+            <input style={{ display: 'none' }} id="auto-submit" type="submit" />
         </form>
     );
 }
