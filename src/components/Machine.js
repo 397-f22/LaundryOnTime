@@ -3,17 +3,22 @@ import { Button, Card } from "react-bootstrap";
 import { GiWashingMachine } from "react-icons/gi";
 import { MdLocalLaundryService } from "react-icons/md";
 import CountdownTimer from "./Timer/CountdownTimer";
-import { useDbUpdate } from "../utilities/firebase";
+import { useAuthState, useDbUpdate } from "../utilities/firebase";
 import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import FormDialog from './EmailForm';
 import ContactUs_auto from './Email_auto';
 
-const updateMachineTime = (minutes, update) => {
+const updateMachineTime = (user, minutes, update) => {
   const NOW_IN_MS = new Date().getTime();
   const DURATION_IN_MS = minutes * 60 * 1000;
-  update({ endTime: new Date(NOW_IN_MS + DURATION_IN_MS).toISOString() });
+  console.log(user);
+  update({ 
+    userId: user.uid,
+    endTime: new Date(NOW_IN_MS + DURATION_IN_MS).toISOString() 
+});
 };
+
 const Machine = ({ machines, setShowToast }) => {
   console.log(machines);
 
@@ -29,8 +34,7 @@ const Machine = ({ machines, setShowToast }) => {
         console.log("An error happened");
       });
   };
-  const auth = getAuth();
-  const user = auth.currentUser;
+  const [user] = useAuthState();
   const [updatewasher1] = useDbUpdate("/washer1");
   const [updatewasher2] = useDbUpdate("/washer2");
   const [updatedryer1] = useDbUpdate("/dryer1");
@@ -57,19 +61,20 @@ const Machine = ({ machines, setShowToast }) => {
           <Button
             variant="success"
             onClick={() => {
-              updateMachineTime(60, updatewasher1);
+              updateMachineTime(user, 60, updatewasher1);
             }}
           >
             Start
           </Button>
-        ) : (
+        ) : user && user.uid === machines["washer1"].userId ? 
+        (
           <Button
             variant="danger"
-            onClick={() => updateMachineTime(0, updatewasher1)}
+            onClick={() => updateMachineTime(user, 0, updatewasher1)}
           >
             Stop
           </Button>
-        )}
+        ) : <></>}
       </Card>
       <FormDialog setShowToast={setShowToast} />
       <ContactUs_auto />
@@ -88,19 +93,20 @@ const Machine = ({ machines, setShowToast }) => {
           <Button
             variant="success"
             onClick={() => {
-              updateMachineTime(60, updatewasher2);
+              updateMachineTime(user, 60, updatewasher2);
             }}
           >
             Start
           </Button>
-        ) : (
+        ) : user && user.uid === machines["washer2"].userId ? 
+        (
           <Button
             variant="danger"
-            onClick={() => updateMachineTime(0, updatewasher2)}
+            onClick={() => updateMachineTime(user, 0, updatewasher2)}
           >
             Stop
           </Button>
-        )}
+        ) : <></>}
       </Card>
       <FormDialog setShowToast={setShowToast} />
       <br />
@@ -118,19 +124,20 @@ const Machine = ({ machines, setShowToast }) => {
           <Button
             variant="success"
             onClick={() => {
-              updateMachineTime(60, updatedryer1);
+              updateMachineTime(user, 60, updatedryer1);
             }}
           >
             Start
           </Button>
-        ) : (
+        ) : user && user.uid === machines["dryer1"].userId ? 
+        (
           <Button
             variant="danger"
-            onClick={() => updateMachineTime(0, updatedryer1)}
+            onClick={() => updateMachineTime(user, 0, updatedryer1)}
           >
             Stop
           </Button>
-        )}
+        ) : <></>}
       </Card>
       <FormDialog setShowToast={setShowToast} />
       <br />
@@ -148,19 +155,20 @@ const Machine = ({ machines, setShowToast }) => {
           <Button
             variant="success"
             onClick={() => {
-              updateMachineTime(60, updatedryer2);
+              updateMachineTime(user, 60, updatedryer2);
             }}
           >
             Start
           </Button>
-        ) : (
+        ) : user && user.uid === machines["dryer2"].userId ? 
+        (
           <Button
             variant="danger"
-            onClick={() => updateMachineTime(0, updatedryer2)}
+            onClick={() => updateMachineTime(user, 0, updatedryer2)}
           >
             Stop
           </Button>
-        )}
+        ) : <></>}
       </Card>
       <FormDialog setShowToast={setShowToast} />
     </div>
