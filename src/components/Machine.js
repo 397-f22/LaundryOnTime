@@ -1,3 +1,4 @@
+import { useDbUpdate } from '../utilities/firebase';
 import React, { Component, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { GiWashingMachine } from "react-icons/gi";
@@ -9,6 +10,8 @@ import { useNavigate } from "react-router-dom";
 import FormDialog from './EmailForm';
 import ContactUs_auto from './Email_auto';
 import Toaster from './Toast'
+import { update } from 'firebase/database';
+import Comment  from './Comment.js'
 
 const updateMachineTime = (user, minutes, update) => {
   const NOW_IN_MS = new Date().getTime();
@@ -95,6 +98,9 @@ const Machine = ({
             Stop
           </Button>
         ) : <></>}
+        <div>
+          <Comment machines={machines} id={"comment1"}/>
+        </div>
       </Card>
       <FormDialog setShowToast={setShowToast} userName={user?.displayName} userEmail={user?.email} />
       <ContactUs_auto userName={user?.displayName} userEmail={user?.email}
@@ -133,6 +139,9 @@ const Machine = ({
             Stop
           </Button>
         ) : <></>}
+        <div>
+                 <Comment machines={machines} id={"comment2"}/>
+       </div>
       </Card>
       <FormDialog setShowToast={setShowToast} />
       <br />
@@ -166,6 +175,9 @@ const Machine = ({
             Stop
           </Button>
         ) : <></>}
+        <div>
+                 <Comment machines={machines} id={"comment3"}/>
+                </div>
       </Card>
       <FormDialog setShowToast={setShowToast} />
       <br />
@@ -199,10 +211,14 @@ const Machine = ({
             Stop
           </Button>
         ) : <></>}
+        <div>
+                 <Comment machines={machines} id={"comment4"}/>
+                </div>
       </Card>
       <FormDialog setShowToast={setShowToast} />
     </div>
   );
 };
+
 
 export default Machine;

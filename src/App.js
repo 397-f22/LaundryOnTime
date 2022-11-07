@@ -8,6 +8,7 @@ import Login from "./components/Login";
 import { useState } from 'react';
 
 function App() {
+
   const [machines, error] = useDbData("/");
   const [showToast, setShowToast] = useState(false);
   const [user] = useAuthState();
