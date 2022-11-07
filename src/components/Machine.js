@@ -1,4 +1,3 @@
-import { useDbUpdate } from '../utilities/firebase';
 import React, { Component, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { GiWashingMachine } from "react-icons/gi";
@@ -12,6 +11,7 @@ import ContactUs_auto from './Email_auto';
 import Toaster from './Toast'
 import { update } from 'firebase/database';
 import Comment  from './Comment.js'
+import Dropdown from 'react-bootstrap/Dropdown';
 
 const updateMachineTime = (user, minutes, update) => {
   const NOW_IN_MS = new Date().getTime();
@@ -59,6 +59,11 @@ const Machine = ({
   const [secondsDryer2, setSecondsDryer2] = useState(0);
   const [sentDryer2, setSentDryer2] = useState(false);
 
+  const [timeWasher1,setTimeWasher1] = useState(60);
+  const [timeWasher2,setTimeWasher2] = useState(60);
+  const [timeDryer1,setTimeDryer1] = useState(60);
+  const [timeDryer2,setTimeDryer2] = useState(60);
+
   return (
     <div>
       <Toaster showToast={showToast} setShowToast={setShowToast} />
@@ -79,12 +84,23 @@ const Machine = ({
             setSeconds={setSecondsWasher1}
           />
         </div>
+        <Dropdown>
+                    <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                    Mode
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                    <Dropdown.Item onClick={()=> setTimeWasher1(60)}>Delicate (60 min)</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>setTimeWasher1(45)}>Perm Press (45 min)</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>setTimeWasher1(30)}> Quick (30 min)</Dropdown.Item>
+                    </Dropdown.Menu>
+        </Dropdown>
         {Date.now() > Date.parse(machines["washer1"].endTime) ? (
           <Button
             variant="success"
             onClick={() => {
               setSentWasher1(false);
-              updateMachineTime(user, 60, updatewasher1);
+              updateMachineTime(user, timeWasher1, updatewasher1);
             }}
           >
             Start
@@ -121,11 +137,24 @@ const Machine = ({
             setSeconds={setSecondsWasher2}
           />
         </div>
+
+        <Dropdown>
+                    <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                    Mode
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                    <Dropdown.Item onClick={()=> setTimeWasher2(60)}>Delicate (60 min)</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>setTimeWasher2(45)}>Perm Press (45 min)</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>setTimeWasher2(30)}> Quick (30 min)</Dropdown.Item>
+                    </Dropdown.Menu>
+        </Dropdown>
+
         {Date.now() > Date.parse(machines["washer2"].endTime) ? (
           <Button
             variant="success"
             onClick={() => {
-              updateMachineTime(user, 60, updatewasher2);
+              updateMachineTime(user, timeWasher2, updatewasher2);
             }}
           >
             Start
@@ -157,11 +186,22 @@ const Machine = ({
             setSeconds={setSecondsDryer1}
           />
         </div>
+        <Dropdown>
+                    <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                    Mode
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                    <Dropdown.Item onClick={()=> setTimeDryer1(60)}>Delicate (60 min)</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>setTimeDryer1(45)}>Perm Press (45 min)</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>setTimeDryer1(30)}> Quick (30 min)</Dropdown.Item>
+                    </Dropdown.Menu>
+        </Dropdown>
         {Date.now() > Date.parse(machines["dryer1"].endTime) ? (
           <Button
             variant="success"
             onClick={() => {
-              updateMachineTime(user, 60, updatedryer1);
+              updateMachineTime(user, timeDryer1, updatedryer1);
             }}
           >
             Start
@@ -193,11 +233,22 @@ const Machine = ({
             setSeconds={setSecondsDryer2}
           />
         </div>
+        <Dropdown>
+                    <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                    Mode
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                    <Dropdown.Item onClick={()=> setTimeDryer2(60)}>Delicate (60 min)</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>setTimeDryer2(45)}>Perm Press (45 min)</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>setTimeDryer2(30)}> Quick (30 min)</Dropdown.Item>
+                    </Dropdown.Menu>
+        </Dropdown>
         {Date.now() > Date.parse(machines["dryer2"].endTime) ? (
           <Button
             variant="success"
             onClick={() => {
-              updateMachineTime(user, 60, updatedryer2);
+              updateMachineTime(user, timeDryer2, updatedryer2);
             }}
           >
             Start
@@ -219,6 +270,5 @@ const Machine = ({
     </div>
   );
 };
-
 
 export default Machine;
