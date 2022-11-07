@@ -3,18 +3,18 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Machine from "./components/Machine";
-import { useDbData } from "./utilities/firebase";
+import { useDbData, useAuthState } from "./utilities/firebase";
 import Login from "./components/Login";
 import { useState } from 'react';
 
 function App() {
   const [machines, error] = useDbData("/");
   const [showToast, setShowToast] = useState(false);
-  const auth = getAuth();
-  const user = auth.currentUser;
+  const [user] = useAuthState();
   if (machines === undefined) return <h1>Loading...</h1>;
   if (error) return <h1>Error loading data</h1>;
   console.log(machines);
+
   return (
     <div className="App">
       <BrowserRouter>
