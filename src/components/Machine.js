@@ -1,4 +1,3 @@
-import { useDbUpdate } from '../utilities/firebase';
 import React, { Component, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { GiWashingMachine } from "react-icons/gi";
