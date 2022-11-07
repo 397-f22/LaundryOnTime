@@ -6,13 +6,15 @@ import CountdownTimer from "./Timer/CountdownTimer";
 import { useDbUpdate } from "../utilities/firebase";
 import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import FormDialog from './EmailForm';
+import ContactUs_auto from './Email_auto';
 
 const updateMachineTime = (minutes, update) => {
   const NOW_IN_MS = new Date().getTime();
   const DURATION_IN_MS = minutes * 60 * 1000;
   update({ endTime: new Date(NOW_IN_MS + DURATION_IN_MS).toISOString() });
 };
-const Machine = ({ machines }) => {
+const Machine = ({ machines, setShowToast }) => {
   console.log(machines);
 
   const navigate = useNavigate();
@@ -38,6 +40,7 @@ const Machine = ({ machines }) => {
     <div>
       <div>
         <h3>{user?.displayName}</h3>
+        {/* <h3>{user?.email}</h3> */}
         <button onClick={handleLogOut}>Sign Out</button>
       </div>
       <Card>
@@ -68,6 +71,8 @@ const Machine = ({ machines }) => {
           </Button>
         )}
       </Card>
+      <FormDialog setShowToast={setShowToast} />
+      <ContactUs_auto />
       <br />
       <Card>
         Washer 2
@@ -97,6 +102,7 @@ const Machine = ({ machines }) => {
           </Button>
         )}
       </Card>
+      <FormDialog setShowToast={setShowToast} />
       <br />
       <Card>
         Dryer 1
@@ -126,6 +132,7 @@ const Machine = ({ machines }) => {
           </Button>
         )}
       </Card>
+      <FormDialog setShowToast={setShowToast} />
       <br />
       <Card>
         Dryer 2
@@ -155,6 +162,7 @@ const Machine = ({ machines }) => {
           </Button>
         )}
       </Card>
+      <FormDialog setShowToast={setShowToast} />
     </div>
   );
 };
