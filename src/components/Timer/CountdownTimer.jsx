@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useCountdown } from './useCountdown';
 
 const DateTimeDisplay = ({ value, type, isDanger }) => {
@@ -35,8 +35,21 @@ const ShowCounter = ({ minutes, seconds }) => {
     );
 };
 
-const CountdownTimer = ({ targetDate, inUsage }) => {
+const CountdownTimer = ({
+    targetDate,
+    inUsage,
+    setMinutes,
+    setSeconds,
+}) => {
     const [minutes, seconds] = useCountdown(targetDate, inUsage);
+
+    useEffect(() => {
+        setMinutes(minutes);
+        setSeconds(seconds);
+    }, [minutes, seconds])
+    
+
+    // console.log(seconds)
 
     if (minutes + seconds <= 0) {
         return <ShowCounter
