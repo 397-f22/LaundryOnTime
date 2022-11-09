@@ -211,7 +211,19 @@ const Machine = ({ machines, setShowToast, showToast }) => {
           <Comment machines={machines} id={"comment2"} />
         </div>
       </Card>
-      <FormDialog setShowToast={setShowToast} />
+      <FormDialog
+        setShowToast={setShowToast}
+        userName={user?.displayName}
+        userEmail={user?.email}
+      />
+      <ContactUs_auto
+        userName={user?.displayName}
+        userEmail={user?.email}
+        minutesWasher={minutesWasher1}
+        secondsWasher={secondsWasher1}
+        sent={sentWasher2}
+        setSent={setSentWasher2}
+      />
       <br />
       <Card>
         <div class="d-flex flex-row mb-3">
@@ -274,7 +286,19 @@ const Machine = ({ machines, setShowToast, showToast }) => {
           <Comment machines={machines} id={"comment3"} />
         </div>
       </Card>
-      <FormDialog setShowToast={setShowToast} />
+      <FormDialog
+        setShowToast={setShowToast}
+        userName={user?.displayName}
+        userEmail={user?.email}
+      />
+      <ContactUs_auto
+        userName={user?.displayName}
+        userEmail={user?.email}
+        minutesWasher={minutesDryer1}
+        secondsWasher={secondsDryer1}
+        sent={sentDryer1}
+        setSent={setSentDryer1}
+      />
       <br />
       <Card>
         <div class="d-flex flex-row mb-3">
@@ -337,7 +361,19 @@ const Machine = ({ machines, setShowToast, showToast }) => {
           <Comment machines={machines} id={"comment4"} />
         </div>
       </Card>
-      <FormDialog setShowToast={setShowToast} />
+      <FormDialog
+        setShowToast={setShowToast}
+        userName={user?.displayName}
+        userEmail={user?.email}
+      />
+      <ContactUs_auto
+        userName={user?.displayName}
+        userEmail={user?.email}
+        minutesWasher={minutesDryer2}
+        secondsWasher={secondsDryer2}
+        sent={sentDryer2}
+        setSent={setSentDryer2}
+      />
     </div>
   );
 };
