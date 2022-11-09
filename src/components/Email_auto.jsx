@@ -36,8 +36,8 @@ const ContactUs_auto = ({
 
     return (
         <form id="myform" className="contact-form" onSubmit={sendEmail}>
-            <input name="to_name" value={userName} />
-            <input name="to_email" value={userEmail} />
+            <input style={{ display: 'none' }} name="to_name" value={userName} />
+            <input style={{ display: 'none' }} name="to_email" value={userEmail} />
             <input style={{ display: 'none' }} id="auto-submit" type="submit" />
         </form>
     );
