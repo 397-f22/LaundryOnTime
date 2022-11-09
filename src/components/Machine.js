@@ -67,16 +67,35 @@ const Machine = ({
   return (
     <div>
       <Toaster showToast={showToast} setShowToast={setShowToast} />
-      <div>
+      <div>  
         <h3>{user?.displayName}</h3>
         {/* <h3>{user?.email}</h3> */}
         <button onClick={handleLogOut}>Sign Out</button>
       </div>
       <Card>
-        Washer 1
-        <br />
-        <GiWashingMachine size={64} />
-        <div>
+        
+        <div class="d-flex flex-row mb-3">
+          <div class='p-2 align-baseline'>
+            <GiWashingMachine size={64} />
+          </div>
+          <div class="p-2 align-baseline">
+            <h1>Washer 1</h1>
+          </div>
+          <div class="p-2 align-baseline">
+            <Dropdown>
+              <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                Mode
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={()=> setTimeWasher1(60)}>Delicate (60 min)</Dropdown.Item>
+                <Dropdown.Item onClick={()=> setTimeWasher1(45)}>Perm Press (45 min)</Dropdown.Item>
+                <Dropdown.Item onClick={()=> setTimeWasher1(30)}> Quick (30 min)</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
+        </div>
+        <div class='row'>
           <CountdownTimer
             targetDate={Date.parse(machines["washer1"].endTime)}
             inUsage={Date.now() <= Date.parse(machines["washer1"].endTime)}
@@ -84,17 +103,8 @@ const Machine = ({
             setSeconds={setSecondsWasher1}
           />
         </div>
-        <Dropdown>
-                    <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                    Mode
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu>
-                    <Dropdown.Item onClick={()=> setTimeWasher1(60)}>Delicate (60 min)</Dropdown.Item>
-                    <Dropdown.Item onClick={()=>setTimeWasher1(45)}>Perm Press (45 min)</Dropdown.Item>
-                    <Dropdown.Item onClick={()=>setTimeWasher1(30)}> Quick (30 min)</Dropdown.Item>
-                    </Dropdown.Menu>
-        </Dropdown>
+        
+        
         {Date.now() > Date.parse(machines["washer1"].endTime) ? (
           <Button
             variant="success"
@@ -126,9 +136,28 @@ const Machine = ({
       setSent={setSentWasher1} />
       <br />
       <Card>
-        Washer 2
-        <br />
-        <GiWashingMachine size={64} />
+      <div class="d-flex flex-row mb-3">
+          <div class='p-2 align-baseline'>
+            <GiWashingMachine size={64} />
+          </div>
+          <div class="p-2 align-baseline">
+            <h1>Washer 2</h1>
+          </div>
+          <div class="p-2 align-baseline">
+            <Dropdown>
+              <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                Mode
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={()=> setTimeWasher2(60)}>Delicate (60 min)</Dropdown.Item>
+                <Dropdown.Item onClick={()=> setTimeWasher2(45)}>Perm Press (45 min)</Dropdown.Item>
+                <Dropdown.Item onClick={()=> setTimeWasher2(30)}> Quick (30 min)</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
+        </div>
+
         <div>
           <CountdownTimer
             targetDate={Date.parse(machines["washer2"].endTime)}
@@ -138,17 +167,7 @@ const Machine = ({
           />
         </div>
 
-        <Dropdown>
-                    <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                    Mode
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu>
-                    <Dropdown.Item onClick={()=> setTimeWasher2(60)}>Delicate (60 min)</Dropdown.Item>
-                    <Dropdown.Item onClick={()=>setTimeWasher2(45)}>Perm Press (45 min)</Dropdown.Item>
-                    <Dropdown.Item onClick={()=>setTimeWasher2(30)}> Quick (30 min)</Dropdown.Item>
-                    </Dropdown.Menu>
-        </Dropdown>
+        
 
         {Date.now() > Date.parse(machines["washer2"].endTime) ? (
           <Button
@@ -175,9 +194,27 @@ const Machine = ({
       <FormDialog setShowToast={setShowToast} />
       <br />
       <Card>
-        Dryer 1
-        <br />
-        <MdLocalLaundryService size={64} />
+        <div class="d-flex flex-row mb-3">
+          <div class='p-2 align-baseline'>
+            <GiWashingMachine size={64} />
+          </div>
+          <div class="p-2 align-baseline">
+            <h1>Dryer 1</h1>
+          </div>
+          <div class="p-2 align-baseline">
+            <Dropdown>
+              <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                Mode
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={()=> setTimeDryer1(60)}>Delicate (60 min)</Dropdown.Item>
+                <Dropdown.Item onClick={()=> setTimeDryer1(45)}>Perm Press (45 min)</Dropdown.Item>
+                <Dropdown.Item onClick={()=> setTimeDryer1(30)}> Quick (30 min)</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
+        </div>
         <div>
           <CountdownTimer
             targetDate={Date.parse(machines["dryer1"].endTime)}
@@ -186,17 +223,7 @@ const Machine = ({
             setSeconds={setSecondsDryer1}
           />
         </div>
-        <Dropdown>
-                    <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                    Mode
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu>
-                    <Dropdown.Item onClick={()=> setTimeDryer1(60)}>Delicate (60 min)</Dropdown.Item>
-                    <Dropdown.Item onClick={()=>setTimeDryer1(45)}>Perm Press (45 min)</Dropdown.Item>
-                    <Dropdown.Item onClick={()=>setTimeDryer1(30)}> Quick (30 min)</Dropdown.Item>
-                    </Dropdown.Menu>
-        </Dropdown>
+        
         {Date.now() > Date.parse(machines["dryer1"].endTime) ? (
           <Button
             variant="success"
@@ -222,9 +249,27 @@ const Machine = ({
       <FormDialog setShowToast={setShowToast} />
       <br />
       <Card>
-        Dryer 2
-        <br />
-        <MdLocalLaundryService size={64} />
+        <div class="d-flex flex-row mb-3">
+          <div class='p-2 align-baseline'>
+            <GiWashingMachine size={64} />
+          </div>
+          <div class="p-2 align-baseline">
+            <h1>Dryer 2</h1>
+          </div>
+          <div class="p-2 align-baseline">
+            <Dropdown>
+              <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                Mode
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={()=> setTimeDryer2(60)}>Delicate (60 min)</Dropdown.Item>
+                <Dropdown.Item onClick={()=> setTimeDryer2(45)}>Perm Press (45 min)</Dropdown.Item>
+                <Dropdown.Item onClick={()=> setTimeDryer2(30)}> Quick (30 min)</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
+        </div>
         <div>
           <CountdownTimer
             targetDate={Date.parse(machines["dryer2"].endTime)}
@@ -233,17 +278,7 @@ const Machine = ({
             setSeconds={setSecondsDryer2}
           />
         </div>
-        <Dropdown>
-                    <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                    Mode
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu>
-                    <Dropdown.Item onClick={()=> setTimeDryer2(60)}>Delicate (60 min)</Dropdown.Item>
-                    <Dropdown.Item onClick={()=>setTimeDryer2(45)}>Perm Press (45 min)</Dropdown.Item>
-                    <Dropdown.Item onClick={()=>setTimeDryer2(30)}> Quick (30 min)</Dropdown.Item>
-                    </Dropdown.Menu>
-        </Dropdown>
+        
         {Date.now() > Date.parse(machines["dryer2"].endTime) ? (
           <Button
             variant="success"
