@@ -149,7 +149,7 @@ const Machine = ({ machines, setShowToast, showToast }) => {
         setSent={setSentWasher1}
       />
       <br />
-      <Card>
+      {/* <Card>
         <div class="d-flex flex-row mb-3">
           <div class="p-2 align-baseline">
             <GiWashingMachine size={64} />
@@ -373,7 +373,7 @@ const Machine = ({ machines, setShowToast, showToast }) => {
         secondsWasher={secondsDryer2}
         sent={sentDryer2}
         setSent={setSentDryer2}
-      />
+      /> */}
     </div>
   );
 };

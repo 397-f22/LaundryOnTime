@@ -16,7 +16,7 @@ const ContactUs_auto = ({
     function sendEmail(e) {
         e.preventDefault();    //This is important, i'm not sure why, but the email won't send without it
         console.log("sending email.");
-        emailjs.sendForm('service_e3ipp7a', 'template_6gc7vdg', e.target, '3Hbnue0vyrZuDnIAW')
+        emailjs.sendForm('service_9nrro1v', 'template_gv5nn64', e.target, 'zE24kn11zGyMJhmdK')
             .then((result) => {
                 console.log(result);
                 // window.location.reload()  //This is if you still want the page to reload (since e.preventDefault() cancelled that behavior)
