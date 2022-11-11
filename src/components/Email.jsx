@@ -12,7 +12,7 @@ const ContactUs = ({
     function sendEmail(e) {
         e.preventDefault();    //This is important, i'm not sure why, but the email won't send without it
 
-        emailjs.sendForm('service_tuwhvue', 'template_hpvy3qf', e.target, 'Fpvga5K0LlNXN3GQU')
+        emailjs.sendForm('service_9nrro1v', 'template_u4m75et', e.target, 'zE24kn11zGyMJhmdK')
             .then((result) => {
                 closeForm();
                 setShowToast(true);
