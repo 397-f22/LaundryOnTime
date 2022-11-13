@@ -1,10 +1,7 @@
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import GoogleLogo from "../assets/icons/google.png";
-<<<<<<< HEAD
 import Background from "../assets/images/back.jpg";
-=======
->>>>>>> 95376b90addfa8fb6d5386471e378e786b44f138
 
 const Login = () => {
   const navigate = useNavigate();
