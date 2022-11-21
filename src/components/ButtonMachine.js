@@ -4,5 +4,5 @@ const ButtonMachine = (updateFunc) => (
                     : <Button variant="danger" onClick={() => updateMachineTime(0, updatewasher1)}>Stop</Button>)
 )
 
-export default 
+export default ButtonMachine;
 
